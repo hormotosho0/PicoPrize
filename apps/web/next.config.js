@@ -18,6 +18,14 @@ const nextConfig = {
       '@react-native-async-storage/async-storage': false,
     }
     
+    // Fix for indexedDB during SSR (Wagmi/RainbowKit)
+    if (isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        'indexeddb': false,
+      }
+    }
+    
     return config
   },
 };

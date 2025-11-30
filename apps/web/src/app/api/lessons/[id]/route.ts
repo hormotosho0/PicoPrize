@@ -1,23 +1,34 @@
 import { NextRequest, NextResponse } from "next/server"
-import fs from "fs/promises"
-import path from "path"
 import type { LessonMetadata } from "@/lib/lesson-data"
 
 type Store = Record<string, LessonMetadata>
 
-const DATA_DIR = path.join(process.cwd(), "data")
-const STORE_PATH = path.join(DATA_DIR, "lessons.json")
+// In-memory store for serverless environments
+let inMemoryStore: Store = {}
 
 async function loadStore(): Promise<Store> {
+  // Try file system first (local development)
   try {
-    const raw = await fs.readFile(STORE_PATH, "utf8")
-    return raw ? (JSON.parse(raw) as Store) : {}
-  } catch (err: any) {
-    if (err.code === "ENOENT") {
-      return {}
+    const fs = await import("fs/promises")
+    const path = await import("path")
+    const DATA_DIR = path.join(process.cwd(), "data")
+    const STORE_PATH = path.join(DATA_DIR, "lessons.json")
+    
+    try {
+      const raw = await fs.readFile(STORE_PATH, "utf8")
+      const fileStore = raw ? (JSON.parse(raw) as Store) : {}
+      inMemoryStore = fileStore
+      return fileStore
+    } catch (err: any) {
+      if (err.code === "ENOENT") {
+        return inMemoryStore
+      }
+      // File system error, fall back to in-memory
+      return inMemoryStore
     }
-    console.error("Error reading lessons store:", err)
-    return {}
+  } catch {
+    // File system not available (serverless environment)
+    return inMemoryStore
   }
 }
 

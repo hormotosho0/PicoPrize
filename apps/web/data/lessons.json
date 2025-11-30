@@ -51,57 +51,127 @@
       }
     ]
   },
-  "4": {
-    "title": "Ethereum",
-    "description": "History of Ethereum",
+  "3": {
+    "title": "ola",
+    "description": "ldjnl",
     "author": "Custom Creator",
     "duration": 600,
     "difficulty": "beginner",
+    "tags": [],
+    "image": "/custom-lesson.png",
+    "language": "en",
+    "questions": [
+      {
+        "id": "q-1764476371033-0",
+        "text": "Blockchain",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": ""
+      }
+    ]
+  },
+  "4": {
+    "title": "Eth",
+    "description": "eth learning",
+    "author": "Custom Creator",
+    "duration": 120,
+    "difficulty": "beginner",
     "tags": [
-      "ethereum"
+      "blockchain"
     ],
     "image": "/custom-lesson.png",
     "language": "en",
     "questions": [
       {
-        "id": "q-1764388852047-0",
-        "text": "When is ethereum launched",
+        "id": "q-1764476497572-0",
+        "text": "Etherum launching",
         "options": [
-          "2013",
-          "2014",
-          "2015",
           "2016",
-          "2012"
+          "2012",
+          "2018",
+          "2022"
         ],
-        "correctAnswer": 3,
-        "explanation": "Check ethereum.org for references"
+        "correctAnswer": 0,
+        "explanation": ""
+      }
+    ]
+  },
+  "5": {
+    "title": "Ethereum",
+    "description": "Eth",
+    "author": "Custom Creator",
+    "duration": 120,
+    "difficulty": "beginner",
+    "tags": [
+      "blockchain"
+    ],
+    "image": "/custom-lesson.png",
+    "language": "en",
+    "questions": [
+      {
+        "id": "q-1764476924053-0",
+        "text": "Ethereum launching",
+        "options": [
+          "2018",
+          "2016",
+          "2017",
+          "2022"
+        ],
+        "correctAnswer": 1,
+        "explanation": ""
+      }
+    ]
+  },
+  "6": {
+    "title": "eth",
+    "description": "eth blockcg",
+    "author": "Custom Creator",
+    "duration": 120,
+    "difficulty": "beginner",
+    "tags": [],
+    "image": "/custom-lesson.png",
+    "language": "en",
+    "questions": [
+      {
+        "id": "q-1764478173237-0",
+        "text": "block",
+        "options": [
+          "1",
+          "2"
+        ],
+        "correctAnswer": 0,
+        "explanation": ""
       }
     ]
   },
   "lesson-4": {
-    "title": "Ethereum",
-    "description": "History of Ethereum",
+    "title": "Eth",
+    "description": "eth learning",
     "author": "Custom Creator",
-    "duration": 600,
+    "duration": 120,
     "difficulty": "beginner",
     "tags": [
-      "ethereum"
+      "blockchain"
     ],
     "image": "/custom-lesson.png",
     "language": "en",
     "questions": [
       {
-        "id": "q-1764388852047-0",
-        "text": "When is ethereum launched",
+        "id": "q-1764476497572-0",
+        "text": "Etherum launching",
         "options": [
-          "2013",
-          "2014",
-          "2015",
           "2016",
-          "2012"
+          "2012",
+          "2018",
+          "2022"
         ],
-        "correctAnswer": 3,
-        "explanation": "Check ethereum.org for references"
+        "correctAnswer": 0,
+        "explanation": ""
       }
     ]
   },
@@ -153,6 +223,78 @@
           "ERC-1155 doesn't require metadata while ERC-721 does"
         ],
         "correctAnswer": 1,
+        "explanation": ""
+      }
+    ]
+  },
+  "lesson-3": {
+    "title": "ola",
+    "description": "ldjnl",
+    "author": "Custom Creator",
+    "duration": 600,
+    "difficulty": "beginner",
+    "tags": [],
+    "image": "/custom-lesson.png",
+    "language": "en",
+    "questions": [
+      {
+        "id": "q-1764476371033-0",
+        "text": "Blockchain",
+        "options": [
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        "correctAnswer": 0,
+        "explanation": ""
+      }
+    ]
+  },
+  "lesson-5": {
+    "title": "Ethereum",
+    "description": "Eth",
+    "author": "Custom Creator",
+    "duration": 120,
+    "difficulty": "beginner",
+    "tags": [
+      "blockchain"
+    ],
+    "image": "/custom-lesson.png",
+    "language": "en",
+    "questions": [
+      {
+        "id": "q-1764476924053-0",
+        "text": "Ethereum launching",
+        "options": [
+          "2018",
+          "2016",
+          "2017",
+          "2022"
+        ],
+        "correctAnswer": 1,
+        "explanation": ""
+      }
+    ]
+  },
+  "lesson-6": {
+    "title": "eth",
+    "description": "eth blockcg",
+    "author": "Custom Creator",
+    "duration": 120,
+    "difficulty": "beginner",
+    "tags": [],
+    "image": "/custom-lesson.png",
+    "language": "en",
+    "questions": [
+      {
+        "id": "q-1764478173237-0",
+        "text": "block",
+        "options": [
+          "1",
+          "2"
+        ],
+        "correctAnswer": 0,
         "explanation": ""
       }
     ]
