@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { WagmiProvider, useAccount, useBalance, useDisconnect, useChainId, useReadContract } from "wagmi"
 import { RainbowKitProvider, ConnectButton, darkTheme } from "@rainbow-me/rainbowkit"
 import "@rainbow-me/rainbowkit/styles.css"
-import { config, celoSepolia } from "./wagmi-config"
+import { config } from "./wagmi-config"
 import { getContractAddress, formatCUSD, ERC20ABI } from "./contracts"
 
 // Create query client
@@ -35,7 +35,7 @@ function WalletContextInner({ children }: { children: React.ReactNode }) {
     address: address,
     token: getContractAddress("CUSD"),
     query: {
-      enabled: !!address && chainId === celoSepolia.id,
+      enabled: !!address && (chainId === 42220 || chainId === 11142220), // Support both mainnet and testnet
       refetchInterval: 10000, // Refetch every 10 seconds
       retry: 3,
     },
@@ -48,7 +48,7 @@ function WalletContextInner({ children }: { children: React.ReactNode }) {
     functionName: "balanceOf",
     args: address ? [address] : undefined,
     query: {
-      enabled: !!address && chainId === celoSepolia.id,
+      enabled: !!address && (chainId === 42220 || chainId === 11142220), // Support both mainnet and testnet
       refetchInterval: 10000,
       retry: 1, // Reduce retries since we know it might fail
     },
@@ -59,7 +59,7 @@ function WalletContextInner({ children }: { children: React.ReactNode }) {
     ? { value: directBalance as bigint, decimals: 18n, symbol: "cUSD", formatted: formatCUSD(directBalance as bigint) }
     : cUSDBalance || null
 
-  const isCorrectNetwork = chainId === celoSepolia.id
+  const isCorrectNetwork = chainId === 42220 || chainId === 11142220 // Support both mainnet and testnet
 
   // Consider connected if: actually connected OR reconnecting (which means restoring from storage)
   // When reconnecting, address will be available, so we should treat it as connected

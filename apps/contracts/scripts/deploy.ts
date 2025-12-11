@@ -23,18 +23,18 @@ async function main() {
   const chainId = await publicClient.getChainId();
   let cUsdAddress: `0x${string}`;
   
-  // Celo Sepolia (chain ID 11142220) doesn't have cUSD deployed
-  // So we always deploy a mock token for it
-  if (networkName === "celo" && chainId !== 11142220) {
-    // Celo Mainnet
+  // Celo Mainnet (chain ID 42220)
+  if (networkName === "celo" && chainId === 42220) {
     cUsdAddress = CUSD_MAINNET;
     console.log("Using mainnet cUSD address:", cUsdAddress);
-  } else if (networkName === "alfajores" || chainId === 44787) {
-    // Celo Alfajores testnet
+  } 
+  // Celo Alfajores testnet (chain ID 44787)
+  else if (networkName === "alfajores" || chainId === 44787) {
     cUsdAddress = CUSD_SEPOLIA;
     console.log("Using Alfajores cUSD address:", cUsdAddress);
-  } else {
-    // For Celo Sepolia or local testing, deploy a mock token
+  } 
+  // Celo Sepolia (chain ID 11142220) or local testing - deploy mock token
+  else {
     console.log("⚠️  cUSD not available on this network. Deploying mock cUSD token...");
     const mockToken = await hre.viem.deployContract("MockERC20", [
       "Mock cUSD",
@@ -125,7 +125,7 @@ async function main() {
     try {
       await hre.run("verify:verify", {
         address: picoPrizePool.address,
-        constructorArguments: [cUsdAddress, treasuryAddress, platformFeeBps],
+        constructorArguments: [cUsdAddress, treasuryAddress, platformFeeBps, picoPrizeReputation.address],
       });
       console.log("PicoPrizePool verified");
     } catch (e) {

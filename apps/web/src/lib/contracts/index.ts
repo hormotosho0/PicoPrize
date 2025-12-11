@@ -7,7 +7,9 @@ export { ERC20ABI } from "./abis/ERC20"
 export { 
   CONTRACT_ADDRESSES, 
   DEFAULT_ADDRESSES, 
+  CELO_MAINNET_CHAIN_ID,
   CELO_SEPOLIA_CHAIN_ID,
+  ACTIVE_CHAIN_ID,
   getContractAddress 
 } from "./addresses"
 

@@ -13,9 +13,9 @@ import {
   type CreatorStats,
   formatCUSD,
   parseCUSD,
-  CELO_SEPOLIA_CHAIN_ID
+  ACTIVE_CHAIN_ID
 } from "@/lib/contracts"
-import { celoSepolia } from "@/lib/wagmi-config"
+import { activeChain } from "@/lib/wagmi-config"
 
 // ============ Pool Contract Hooks ============
 
@@ -117,8 +117,8 @@ export function useCreatePool() {
     creatorFeeBps: bigint
   }) => {
     // Ensure we're on the correct chain
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     return writeContractAsync({
@@ -135,7 +135,7 @@ export function useCreatePool() {
         params.creatorSeed,
         params.creatorFeeBps,
       ],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
@@ -148,8 +148,8 @@ export function useStake() {
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
   const stake = async (poolId: bigint, choice: number, amount: bigint) => {
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     writeContract({
@@ -157,7 +157,7 @@ export function useStake() {
       abi: PicoPrizePoolABI,
       functionName: "stake",
       args: [poolId, choice, amount],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
@@ -170,8 +170,8 @@ export function useResolvePool() {
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
   const resolvePool = async (poolId: bigint, winningChoice: number) => {
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     writeContract({
@@ -179,7 +179,7 @@ export function useResolvePool() {
       abi: PicoPrizePoolABI,
       functionName: "resolvePool",
       args: [poolId, winningChoice],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
@@ -192,8 +192,8 @@ export function useCancelPool() {
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
   const cancelPool = async (poolId: bigint, reason: string) => {
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     writeContract({
@@ -201,7 +201,7 @@ export function useCancelPool() {
       abi: PicoPrizePoolABI,
       functionName: "cancelPool",
       args: [poolId, reason],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
@@ -214,8 +214,8 @@ export function useClaimReward() {
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
   const claimReward = async (poolId: bigint) => {
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     writeContract({
@@ -223,7 +223,7 @@ export function useClaimReward() {
       abi: PicoPrizePoolABI,
       functionName: "claimReward",
       args: [poolId],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
@@ -236,8 +236,8 @@ export function useClaimRefund() {
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
   const claimRefund = async (poolId: bigint) => {
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     writeContract({
@@ -245,7 +245,7 @@ export function useClaimRefund() {
       abi: PicoPrizePoolABI,
       functionName: "claimRefund",
       args: [poolId],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
@@ -287,8 +287,8 @@ export function useCUSDApprove() {
 
   const approve = async (spender: `0x${string}`, amount: bigint) => {
     // Ensure we're on the correct chain
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     return writeContractAsync({
@@ -296,7 +296,7 @@ export function useCUSDApprove() {
       abi: ERC20ABI,
       functionName: "approve",
       args: [spender, amount],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
@@ -463,8 +463,8 @@ export function useRateCreator() {
   const { isLoading: isConfirming, isSuccess } = useWaitForTransactionReceipt({ hash })
 
   const rateCreator = async (creator: `0x${string}`, rating: number) => {
-    if (chainId !== celoSepolia.id) {
-      throw new Error(`Please switch to Celo Sepolia (Chain ID: ${celoSepolia.id}). Current chain: ${chainId}`)
+    if (chainId !== activeChain.id) {
+      throw new Error(`Please switch to ${activeChain.name} (Chain ID: ${activeChain.id}). Current chain: ${chainId}`)
     }
 
     writeContract({
@@ -472,7 +472,7 @@ export function useRateCreator() {
       abi: PicoPrizeReputationABI,
       functionName: "rateCreator",
       args: [creator, BigInt(rating)],
-      chainId: celoSepolia.id,
+      chainId: activeChain.id,
     })
   }
 
